@@ -152,18 +152,19 @@ const HostVmsList = ({ vms, config, ui, storagePools, actions, networks, onAddEr
                         <AggregateStatusCards networks={networks} storagePools={storagePools} />
                         <Card id='virtual-machines-listing' isSelectable isClickable>
                             <CardHeader actions={{ actions: toolBar }}>
-                                <CardTitle component="h2">{_("Virtual machines")}</CardTitle>
+                                <CardTitle component="h2">{_("Disaster Recovery")}</CardTitle>
                             </CardHeader>
                             <CardBody className="contains-list">
-                                <ListingTable aria-label={_("Virtual machines")}
+                                <ListingTable aria-label={_("Disaster Recovery")}
                             variant='compact'
                             columns={[
                                 { title: _("Name"), header: true, props: { width: 25 } },
                                 { title: _("Connection"), props: { width: 25 } },
                                 { title: _("State"), props: { width: 25 } },
+                                { title: _("Created at"), props: { width: 25 } },
                                 { title: "", props: { width: 25, "aria-label": _("Actions") } },
                             ]}
-                            emptyCaption={_("No VM is running or defined on this host")}
+                            emptyCaption={_("No active recovery running")}
                             rows={ combinedVmsFiltered
                                     .sort(sortFunction)
                                     .map(vm => {
@@ -200,6 +201,7 @@ const HostVmsList = ({ vms, config, ui, storagePools, actions, networks, onAddEr
                                                                  }))} />
                                                     ),
                                                 },
+                                                { title: vm.metadata ? vm.metadata.createdAt : "loading.." },
                                                 { title: vmActions },
                                             ],
                                             props: {

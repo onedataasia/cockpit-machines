@@ -3,6 +3,7 @@ import {
     logDebug,
     rephraseUI,
     units,
+    normalizeDate
 } from './helpers.js';
 
 const METADATA_NAMESPACE = "https://github.com/cockpit-project/cockpit-machines";
@@ -283,6 +284,7 @@ export function parseDomainDumpxml(connectionName, domXml, objPath) {
     const rootPassword = parseDumpxmlMachinesMetadataElement(metadataElem, 'root_password');
     const userLogin = parseDumpxmlMachinesMetadataElement(metadataElem, 'user_login');
     const userPassword = parseDumpxmlMachinesMetadataElement(metadataElem, 'user_password');
+    const createdAt = parseDumpxmlMachinesMetadataElement(metadataElem, 'created_at');
 
     const metadata = {
         hasInstallPhase,
@@ -292,6 +294,7 @@ export function parseDomainDumpxml(connectionName, domXml, objPath) {
         rootPassword,
         userLogin,
         userPassword,
+        createdAt: normalizeDate(createdAt)
     };
 
     return {

@@ -905,3 +905,22 @@ export function vmSupportsExternalSnapshots(config, vm) {
 export function vmHasVFIOHostDevs(vm) {
     return !!vm.hostDevices.find(hd => hd.driver === "vfio");
 }
+
+
+export function normalizeDate(date) {
+    const now = new Date(date);
+
+    // Helper function to pad single digits with a leading zero
+    const pad = (num) => String(num).padStart(2, '0');
+
+    // Get the individual components of the date and time
+    const year = now.getFullYear();
+    const month = pad(now.getMonth() + 1); // Months are 0-indexed
+    const day = pad(now.getDate());
+    const hours = pad(now.getHours());
+    const minutes = pad(now.getMinutes());
+    const seconds = pad(now.getSeconds());
+
+    // Combine them into the desired format
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
