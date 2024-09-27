@@ -10,6 +10,7 @@ import tempfile
 import traceback
 import xml.etree.ElementTree as ET
 from contextlib import contextmanager
+from datetime import datetime
 
 
 def virsh(connection, *args):
@@ -358,6 +359,7 @@ def inject_metadata(xml):
   <cockpit_machines:install_source_type>{args['sourceType']}</cockpit_machines:install_source_type> \
   <cockpit_machines:install_source>{args['source']}</cockpit_machines:install_source> \
   <cockpit_machines:os_variant>{args['os']}</cockpit_machines:os_variant> \
+  <cockpit_machines:created_at>{datetime.now().isoformat()}</cockpit_machines:created_at> \
 '''
     if has_install_phase == "true" and args['sourceType'] == 'cloud':
         if args['rootPassword']:
