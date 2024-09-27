@@ -1467,7 +1467,8 @@ class CreateVmModal extends React.Component {
             <Modal position="top" variant="medium" id='create-vm-dialog' isOpen onClose={Dialogs.close}
                 title={this.props.mode == 'create' ? _("Create new virtual machine") : _("Import a virtual machine")}
                 actions={[
-                    <Button variant="primary"
+                    this.props.mode == 'create'
+                        ? _(<Button variant="primary"
                             key="primary-button"
                             id="create-and-run"
                             isLoading={this.state.createMode === RUN}
@@ -1477,8 +1478,9 @@ class CreateVmModal extends React.Component {
                                 downloadingRhelDisabled
                             }
                             onClick={() => this.onCreateClicked(true)}>
-                        {this.props.mode == 'create' ? _("Create and run") : _("Import and run")}
-                    </Button>,
+                            "Create and run"
+                        </Button>)
+                        : _(undefined),
                     createAndEdit,
                     <Button variant='link'
                             key="cancel-button"

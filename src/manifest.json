@@ -8,7 +8,7 @@
   ],
   "menu": {
      "vms": {
-        "label": "Virtual machines",
+        "label": "Disaster Recovery",
         "path": "index.html",
         "order": 60,
         "docs": [
