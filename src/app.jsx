@@ -261,9 +261,8 @@ class AppActive extends React.Component {
             unattendedUserLogin,
             virtInstallAvailable,
         };
-        const createVmAction = <CreateVmAction {...properties} mode='create' />;
         const importDiskAction = <CreateVmAction {...properties} mode='import' />;
-        const vmActions = <> {importDiskAction} {createVmAction} </>;
+        const vmActions = <> {importDiskAction} </>;
         const pathVms = path.length == 0 || (path.length > 0 && path[0] == 'vms');
 
         const allNotifications = this.state.notifications.length > 0 &&

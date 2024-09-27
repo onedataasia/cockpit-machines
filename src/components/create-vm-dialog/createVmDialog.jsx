@@ -1450,7 +1450,7 @@ class CreateVmModal extends React.Component {
                         downloadingRhelDisabled
                     )}
                     onClick={() => this.onCreateClicked(false)}>
-                {this.props.mode == 'create' ? _("Create and edit") : _("Import and edit")}
+                {this.props.mode == 'create' ? _("Create and edit") : _("Create")}
             </Button>
         );
         if (unattendedInstallation) {
@@ -1465,8 +1465,7 @@ class CreateVmModal extends React.Component {
 
         return (
             <Modal position="top" variant="medium" id='create-vm-dialog' isOpen onClose={Dialogs.close}
-                title={this.props.mode == 'create' ? _("Create new virtual machine") : _("Import a virtual machine")}
-                actions={[
+                   title={this.props.mode == 'create' ? _("Create new virtual machine") : _("Locate your disk image")}                actions={[
                     this.props.mode == 'create'
                         ? _(<Button variant="primary"
                             key="primary-button"
@@ -1528,10 +1527,10 @@ export class CreateVmAction extends React.Component {
         let createButton = (
             <Button isDisabled={testdata !== undefined}
                     testdata={testdata}
-                    id={this.props.mode == 'create' ? 'create-new-vm' : 'import-existing-vm'}
+                    id='import-existing-vm'
                     variant='secondary'
                     onClick={open}>
-                {this.props.mode == 'create' ? _("Create VM") : _("Import VM")}
+                {_("Launch Recovery")}
             </Button>
         );
         if (!this.props.virtInstallAvailable)
@@ -1546,12 +1545,9 @@ export class CreateVmAction extends React.Component {
         else
             createButton = (
                 <Tooltip id={this.props.mode + '-button-tooltip'}
-                         position={this.props.mode === "create" ? "top-end" : "top"}
+                         position='top'
                          className={this.props.mode === "create" && "custom-arrow"}
-                         content={this.props.mode === "create"
-                             ? _("Create VM from local or network installation medium")
-                             : _("Create VM by importing a disk image of an existing VM installation")
-                         }
+                         content={_("Launch VM for disaster recovery using available restored disk image")}
                          isContentLeftAligned>
                     <span>
                         {createButton}
