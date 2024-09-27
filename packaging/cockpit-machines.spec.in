@@ -20,9 +20,9 @@ Version:        %{VERSION}
 Release:        1%{?dist}
 Summary:        Cockpit user interface for virtual machines
 License:        LGPL-2.1-or-later AND MIT
-URL:            https://github.com/cockpit-project/cockpit-machines
+URL:            https://github.com/onedataasia/cockpit-machines
 
-Source0:        https://github.com/cockpit-project/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz
+Source0:        https://github.com/onedataasia/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz
 BuildArch:      noarch
 %if 0%{?suse_version}
 BuildRequires:  appstream-glib
