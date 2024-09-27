@@ -197,6 +197,22 @@ def prepare_installation_source(args):
 
     return params
 
+SUPPORTED_EXTENSIONS = {
+    ".vmdk": "vmdk",
+    ".qcow2": "qcow2",
+    ".raw": "raw",
+    ".img": "raw"
+}
+
+UNSUPPORTED_FORMAT_MESSAGE = "Unsupported image format"
+
+
+def get_driver_type(source):
+    for ext, driver in SUPPORTED_EXTENSIONS.items():
+        if source.endswith(ext):
+            return f"driver_type={driver}"
+    raise Exception(UNSUPPORTED_FORMAT_MESSAGE)
+
 
 @contextmanager
 def prepare_virt_install_params(args):
@@ -231,7 +247,8 @@ def prepare_virt_install_params(args):
             params.append("--disk")
 
             if args['sourceType'] == 'disk_image':
-                disk = f"{args['source']},device=disk"
+                driver = get_driver_type(args['source'])
+                disk = f"{args['source']},device=disk,{driver}"
             elif args['storagePool'] == 'NoStorage':
                 disk = "none"
             else:
